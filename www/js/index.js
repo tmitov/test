@@ -26,6 +26,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+		document.addEventListener("deviceready", initPushwoosh, true);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -33,8 +34,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-        initPushwoosh();
+        //app.receivedEvent('deviceready');
+        //initPushwoosh();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -53,9 +54,6 @@ var app = {
     
 };
 
-
-
-
 function initPushwoosh()
 {
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
@@ -72,7 +70,7 @@ function initPushwoosh()
         alert(title);
     });
  
-    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_NUMBER", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
     pushNotification.onDeviceReady({ projectid: "692887102589", pw_appid : "73C13-1D936" });
  
     //register for pushes
